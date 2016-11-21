@@ -12,3 +12,11 @@ function createStore(reducer) {
     dispatch,
   };
 }
+
+function reducer(state, action) {
+  if (action.type === 'ADD_MESSAGE') {
+    return state.messages.concat(action.message);
+  } else {
+    return state;
+  }
+}
