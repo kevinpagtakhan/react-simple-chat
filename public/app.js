@@ -71,7 +71,7 @@ const MessageInput = React.createClass({
   },
   render: function() {
     return (
-      <div>
+      <div className='ui input'>
         <input
           ref='messageInput'
           type='text'
