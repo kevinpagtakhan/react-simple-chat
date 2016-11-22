@@ -41,12 +41,18 @@ const initialState = {
 
 const store = createStore(reducer, initialState);
 
-const listener = () => (
-  console.log(store.getState())
-);
+const App = React.createClass({
+  componentDidMount: function() {
+    store.subscribe(() => this.forceUpdate());
+  },
+  render: function() {
+    const messages = store.getState().messages;
 
-store.subscribe(listener);
-
-store.dispatch({type: 'ADD_MESSAGE', message: 'How are you?'});
-store.dispatch({type: 'ADD_MESSAGE', message: 'I am fine. Thank you. How about you?'});
-store.dispatch({type: 'DELETE_MESSAGE', index: 1});
+    return (
+      <div className='ui segment'>
+        <MessageView messages={messages} />
+        <MessageInput />
+      </div>
+    );
+  }
+});
