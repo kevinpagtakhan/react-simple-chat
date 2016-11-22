@@ -88,3 +88,33 @@ const MessageInput = React.createClass({
     );
   }
 });
+
+const MessageView = React.createClass({
+  handleClick: function(index) {
+    this.deleteMessage(index);
+  },
+  deleteMessage: function(index) {
+    store.dispatch({
+      type: 'DELETE_MESSAGE',
+      index: index
+    });
+  },
+  render: function() {
+    const messages = this.props.messages.map((m, index) => (
+      <div
+        className='comment'
+        key={index}
+        onClick={() => this.handleClick(index)}
+      >
+        {m}
+      </div>
+    ));
+    return (
+      <div className='ui comments'>
+        {messages}
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(<App />, document.getElementById('content'));
