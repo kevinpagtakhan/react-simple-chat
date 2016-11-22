@@ -56,3 +56,35 @@ const App = React.createClass({
     );
   }
 });
+
+const MessageInput = React.createClass({
+  handleSubmit: function(){
+    this.sendMessage();
+  },
+  sendMessage: function() {
+    store.dispatch({
+      type: 'ADD_MESSAGE',
+      message: this.refs.messageInput.value
+    });
+
+    this.refs.messageInput.value = '';
+  },
+  render: function() {
+    return (
+      <div>
+        <input
+          ref='messageInput'
+          type='text'
+        >
+        </input>
+        <button
+          onClick={this.handleSubmit}
+          className='ui primary button'
+          type='submit'
+        >
+          Submit
+        </button>
+      </div>
+    );
+  }
+});
